@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="src\Twixis.Api\Twixis.Api.csproj" Type="Classic C#" />
+  <Project Path="src\Twixis.EventSub\Twixis.EventSub.csproj" Type="Classic C#" />
+  <Project Path="src\Twixis.Extension\Twixis.Extension.csproj" Type="Classic C#" />
+  <Project Path="src\Twixis.Irc\Twixis.Irc.csproj" Type="Classic C#" />
+  <Project Path="src\Twixis.OAuth\Twixis.OAuth.csproj" Type="Classic C#" />
+  <Project Path="src\Twixis.Playground\Twixis.Playground.csproj" Type="Classic C#" />
+</Solution>

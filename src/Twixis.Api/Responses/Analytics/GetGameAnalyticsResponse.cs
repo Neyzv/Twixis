@@ -1,0 +1,14 @@
+﻿// Copyright (c) Twixis 2025.
+// Twixis licenses this file to you under the MIT license.
+// See the license here https://github.com/AerafalGit/Twixis/blob/main/LICENSE.
+
+using System.Text.Json.Serialization;
+
+namespace Twixis.Api.Responses.Analytics;
+
+public sealed record GetGameAnalyticsResponse(
+    [property: JsonPropertyName("game_id")] string GameId,
+    [property: JsonPropertyName("URL")] string Url,
+    [property: JsonPropertyName("type")] string Type,
+    [property: JsonPropertyName("date_range")] DateRange DateRange
+);
