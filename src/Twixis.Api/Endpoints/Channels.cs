@@ -5,7 +5,6 @@
 using Twixis.Api.Internal.Http;
 using Twixis.Api.Internal.Http.Uri;
 using Twixis.Api.Requests.Channels;
-using Twixis.Api.Responses.Ads;
 using Twixis.Api.Responses.Channels;
 
 namespace Twixis.Api.Endpoints;
