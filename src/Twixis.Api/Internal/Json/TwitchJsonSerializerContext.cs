@@ -9,6 +9,7 @@ using Twixis.Api.Responses;
 using Twixis.Api.Responses.Ads;
 using Twixis.Api.Responses.Analytics;
 using Twixis.Api.Responses.Bits;
+using Twixis.Api.Responses.Channels;
 
 namespace Twixis.Api.Internal.Json;
 
@@ -17,6 +18,7 @@ namespace Twixis.Api.Internal.Json;
 [JsonSerializable(typeof(TwitchResponse<StartCommercialResponse>))]
 [JsonSerializable(typeof(TwitchResponse<GetAdScheduleResponse>))]
 [JsonSerializable(typeof(TwitchResponse<SnoozeNextAdResponse>))]
+[JsonSerializable(typeof(TwitchResponse<GetChannelInformationResponse>))]
 [JsonSerializable(typeof(TwitchPaginatedResponse<GetExtensionAnalyticsResponse>))]
 [JsonSerializable(typeof(TwitchPaginatedResponse<GetGameAnalyticsResponse>))]
 [JsonSerializable(typeof(TwitchDatedResponse<GetBitsLeaderboardResponse>))]
