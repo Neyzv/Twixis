@@ -51,7 +51,7 @@ public sealed class Channels
     public async Task<GetFollowedChannelsResponse[]> GetFollowedChannelsAsync(GetFollowedChannelsRequest request, CancellationToken cancellationToken)
     {
         var url = UrlBuilder
-            .Create("channels/editors")
+            .Create("channels/followed")
             .AddParameter("user_id", request.UserId)
             .AddParameter("broadcaster_id", request.BroadcasterId)
             .AddParameter("first", request.First)
