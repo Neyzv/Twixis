@@ -30,6 +30,14 @@ public sealed class TwitchHttpClient
         return SendAsync<TwitchPaginatedResponse<TResponse>, TResponse>(request, cancellationToken);
     }
 
+    public Task<TwitchPaginatedWithTotalResponse<TResponse>> GetPaginatedWithTotalAsync<TResponse>([StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken)
+        where TResponse : class
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+
+        return SendAsync<TwitchPaginatedWithTotalResponse<TResponse>, TResponse>(request, cancellationToken);
+    }
+
     public Task<TwitchDatedResponse<TResponse>> GetDatedAsync<TResponse>([StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken)
         where TResponse : class
     {
