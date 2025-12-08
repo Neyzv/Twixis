@@ -15,10 +15,13 @@ public sealed class TwitchApiClient
 
     public Bits Bits { get; }
 
+    public Channels Channels { get; }
+
     public TwitchApiClient(TwitchHttpClient http)
     {
         Ads = new Ads(http);
         Analytics = new Analytics(http);
         Bits = new Bits(http);
+        Channels = new Channels(http);
     }
 }

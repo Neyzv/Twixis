@@ -5,6 +5,7 @@
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 using Twixis.Api.Requests.Ads;
+using Twixis.Api.Requests.Channels;
 using Twixis.Api.Responses;
 using Twixis.Api.Responses.Ads;
 using Twixis.Api.Responses.Analytics;
@@ -15,6 +16,7 @@ namespace Twixis.Api.Internal.Json;
 
 [JsonSerializable(typeof(ErrorResponse))]
 [JsonSerializable(typeof(StartCommercialRequest))]
+[JsonSerializable(typeof(ModifyChannelInformationRequest))]
 [JsonSerializable(typeof(TwitchResponse<StartCommercialResponse>))]
 [JsonSerializable(typeof(TwitchResponse<GetAdScheduleResponse>))]
 [JsonSerializable(typeof(TwitchResponse<SnoozeNextAdResponse>))]

@@ -65,14 +65,38 @@ public sealed class TwitchHttpClient
         return SendAsync<TwitchResponse<TResponse>, TResponse>(httpRequest, cancellationToken);
     }
 
+    public Task PatchAsync<TRequest>([StringSyntax(StringSyntaxAttribute.Uri)] string url, TRequest request, CancellationToken cancellationToken)
+        where TRequest : TwitchRequest
+    {
+        var httpRequest = new HttpRequestMessage(HttpMethod.Patch, url);
+
+        httpRequest.Content = JsonContent.Create(request, TwitchJsonSerializerContext.Default.GetTypeInfo<TRequest>());
+
+        return SendAsync(httpRequest, cancellationToken);
+    }
+
+    private void SetupRequest(HttpRequestMessage request)
+    {
+        request.Headers.TryAddWithoutValidation("Client-ID", _options.ClientId);
+        request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_options.AccessToken}");
+    }
+
+    private async Task SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        using (request)
+        {
+            SetupRequest(request);
+            using var _ = await _http.SendAsync(request, cancellationToken).ConfigureAwait(false);
+        }
+    }
+
     private async Task<TTwitchResponse> SendAsync<TTwitchResponse, TResponse>(HttpRequestMessage request, CancellationToken cancellationToken)
         where TTwitchResponse : TwitchResponse<TResponse>
         where TResponse : class
     {
         using (request)
         {
-            request.Headers.TryAddWithoutValidation("Client-ID", _options.ClientId);
-            request.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_options.AccessToken}");
+            SetupRequest(request);
 
             using var response = await _http.SendAsync(request, cancellationToken).ConfigureAwait(false);
 

@@ -2,10 +2,12 @@
 using Microsoft.Extensions.Options;
 using Twixis.Api;
 using Twixis.Api.Endpoints;
+using Twixis.Api.Enums;
 using Twixis.Api.Internal.Http;
 using Twixis.Api.Requests.Ads;
 using Twixis.Api.Requests.Analytics;
 using Twixis.Api.Requests.Bits;
+using Twixis.Api.Requests.Channels;
 
 var cancellationTokenSource = new CancellationTokenSource();
 
@@ -21,8 +23,12 @@ var twitchHttpClient = new TwitchHttpClient(new HttpClient(new TwitchHttpClientH
 
 var twitchApiClient = new TwitchApiClient(twitchHttpClient);
 
-var data = await twitchApiClient
-    .Bits
-    .GetBitsLeaderboardAsync(new GetBitsLeaderboardRequest(), cancellationToken);
+await twitchApiClient
+    .Channels
+    .ModifyChannelInformationAsync(
+        new ModifyChannelInformationRequest(
+            "sdf", ContentClassificationLabels: [new ContentClassificationLabel(ContentClassification.Gambling, true)]
+            ),
+        cancellationToken);
 
 Console.ReadKey();

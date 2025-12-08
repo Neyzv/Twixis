@@ -12,9 +12,8 @@ namespace Twixis.Api.Internal.Http;
 
 public sealed class TwitchHttpClientHandler : DelegatingHandler
 {
-    public TwitchHttpClientHandler() : base(new HttpClientHandler())
-    {
-    }
+    public TwitchHttpClientHandler()
+        : base(new HttpClientHandler()) { }
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {

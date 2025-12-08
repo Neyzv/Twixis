@@ -27,4 +27,14 @@ public sealed class Channels
 
         return (await _http.GetAsync<GetChannelInformationResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
     }
+
+    public Task ModifyChannelInformationAsync(ModifyChannelInformationRequest request, CancellationToken cancellationToken)
+    {
+        var url = UrlBuilder
+            .Create("channels")
+            .AddParameter("broadcaster_id", request.BroadcasterId)
+            .Build();
+
+        return _http.PatchAsync(url, request, cancellationToken);
+    }
 }
