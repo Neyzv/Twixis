@@ -37,4 +37,14 @@ public sealed class Channels
 
         return _http.PatchAsync(url, request, cancellationToken);
     }
+
+    public async Task<GetChannelEditorsResponse[]> GetChannelEditorsAsync(GetChannelEditorsRequest request, CancellationToken cancellationToken)
+    {
+        var url = UrlBuilder
+            .Create("channels/editors")
+            .AddParameter("broadcaster_id", request.BroadcasterId)
+            .Build();
+
+        return (await _http.GetAsync<GetChannelEditorsResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+    }
 }

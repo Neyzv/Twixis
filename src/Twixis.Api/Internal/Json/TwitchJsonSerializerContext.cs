@@ -21,6 +21,7 @@ namespace Twixis.Api.Internal.Json;
 [JsonSerializable(typeof(TwitchResponse<GetAdScheduleResponse>))]
 [JsonSerializable(typeof(TwitchResponse<SnoozeNextAdResponse>))]
 [JsonSerializable(typeof(TwitchResponse<GetChannelInformationResponse>))]
+[JsonSerializable(typeof(TwitchResponse<GetChannelEditorsResponse>))]
 [JsonSerializable(typeof(TwitchPaginatedResponse<GetExtensionAnalyticsResponse>))]
 [JsonSerializable(typeof(TwitchPaginatedResponse<GetGameAnalyticsResponse>))]
 [JsonSerializable(typeof(TwitchDatedResponse<GetBitsLeaderboardResponse>))]
