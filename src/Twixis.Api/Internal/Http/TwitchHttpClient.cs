@@ -83,6 +83,13 @@ public sealed class TwitchHttpClient
         return SendAsync(httpRequest, cancellationToken);
     }
 
+    public Task DeleteAsync([StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken)
+    {
+        var httpRequest = new HttpRequestMessage(HttpMethod.Delete, url);
+
+        return SendAsync(httpRequest, cancellationToken);
+    }
+
     private void SetupRequest(HttpRequestMessage request)
     {
         request.Headers.TryAddWithoutValidation("Client-ID", _options.ClientId);
