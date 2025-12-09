@@ -50,4 +50,25 @@ public sealed class ChannelPoints
 
         return (await _http.SendRequestAsync<GetCustomRewardResponse>(HttpMethod.Post, url, cancellationToken).ConfigureAwait(false)).Data;
     }
+
+    public async Task<GetCustomRewardRedemptionResponse[]> GetCustomRewardRedemptionAsync(GetCustomRewardRedemptionRequest request, CancellationToken cancellationToken)
+    {
+        var urlBuilder = UrlBuilder
+            .Create("channel_points/custom_rewards/redemptions")
+            .AddParameter("broadcaster_id", request.BroadcasterId)
+            .AddParameter("reward_id", request.RewardId)
+            .AddParameter("status", request.Status.ToString());
+
+        if(request.Ids is not null)
+            foreach(var id in request.Ids)
+                urlBuilder.AddParameter("id", id);
+
+        var url = urlBuilder
+            .AddParameter("sort", request.Sort.ToString())
+            .AddParameter("after", request.After)
+            .AddParameter("first", request.First)
+            .Build();
+
+        return (await _http.SendRequestAsync<GetCustomRewardRedemptionResponse>(HttpMethod.Get, url, cancellationToken).ConfigureAwait(false)).Data;
+    }
 }
