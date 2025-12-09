@@ -44,7 +44,7 @@ public sealed class ChannelPoints
         var url = UrlBuilder
             .Create("channel_points/custom_rewards")
             .AddParameter("broadcaster_id", request.BroadcasterId)
-            .AddParameter("id", request.Id)
+            .AddParameter("id", request.Ids)
             .AddParameter("only_manageable_rewards", request.OnlyManageableRewards)
             .Build();
 

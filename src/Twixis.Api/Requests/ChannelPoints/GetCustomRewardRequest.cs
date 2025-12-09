@@ -6,6 +6,6 @@ namespace Twixis.Api.Requests.ChannelPoints;
 
 public sealed record GetCustomRewardRequest(
     string BroadcasterId,
-    string? Id = null,
+    string[]? Ids = null,
     bool? OnlyManageableRewards = null
 );
