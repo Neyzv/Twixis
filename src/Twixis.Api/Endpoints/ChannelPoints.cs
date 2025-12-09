@@ -18,7 +18,7 @@ public sealed class ChannelPoints
         _http = http;
     }
 
-    public async Task<CreateCustomRewardsResponse[]> SnoozeNextAdAsync(CreateCustomRewardsRequest request, CancellationToken cancellationToken)
+    public async Task<CreateCustomRewardsResponse[]> CreateCustomRewardsAsync(CreateCustomRewardsRequest request, CancellationToken cancellationToken)
     {
         var url = UrlBuilder
             .Create("channel_points/custom_rewards")
