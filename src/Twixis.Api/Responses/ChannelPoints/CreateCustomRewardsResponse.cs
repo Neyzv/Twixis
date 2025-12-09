@@ -14,7 +14,7 @@ public sealed record CreateCustomRewardsResponse(
     [property: JsonPropertyName("id")] string Id,
     [property: JsonPropertyName("title")] string Title,
     [property: JsonPropertyName("prompt")] string Prompt,
-    [property: JsonPropertyName("cost")] int Cost,
+    [property: JsonPropertyName("cost")] long Cost,
     [property: JsonPropertyName("image")] ImageSet Image,
     [property: JsonPropertyName("default_image")] ImageSet DefaultImage,
     [property: JsonPropertyName("background_color")] string BackgroundColor,

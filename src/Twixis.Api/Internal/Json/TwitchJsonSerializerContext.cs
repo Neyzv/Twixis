@@ -20,6 +20,8 @@ namespace Twixis.Api.Internal.Json;
 [JsonSerializable(typeof(StartCommercialRequest))]
 [JsonSerializable(typeof(ModifyChannelInformationRequest))]
 [JsonSerializable(typeof(CreateCustomRewardsRequest))]
+[JsonSerializable(typeof(UpdateCustomRewardRequest))]
+
 [JsonSerializable(typeof(TwitchResponse<StartCommercialResponse>))]
 [JsonSerializable(typeof(TwitchResponse<GetAdScheduleResponse>))]
 [JsonSerializable(typeof(TwitchResponse<SnoozeNextAdResponse>))]
@@ -28,10 +30,14 @@ namespace Twixis.Api.Internal.Json;
 [JsonSerializable(typeof(TwitchResponse<CreateCustomRewardsResponse>))]
 [JsonSerializable(typeof(TwitchResponse<GetCustomRewardResponse>))]
 [JsonSerializable(typeof(TwitchResponse<GetCustomRewardRedemptionResponse>))]
+[JsonSerializable(typeof(TwitchResponse<UpdateCustomRewardResponse>))]
+
 [JsonSerializable(typeof(TwitchPaginatedResponse<GetExtensionAnalyticsResponse>))]
 [JsonSerializable(typeof(TwitchPaginatedResponse<GetGameAnalyticsResponse>))]
+
 [JsonSerializable(typeof(TwitchPaginatedWithTotalResponse<GetFollowedChannelsResponse>))]
 [JsonSerializable(typeof(TwitchPaginatedWithTotalResponse<GetChannelFollowersResponse>))]
+
 [JsonSerializable(typeof(TwitchDatedResponse<GetBitsLeaderboardResponse>))]
 public sealed partial class TwitchJsonSerializerContext : JsonSerializerContext
 {
