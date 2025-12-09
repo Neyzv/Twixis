@@ -33,12 +33,8 @@ public sealed class UrlBuilder
         if (value is null)
             return this;
 
-        if (_builder.Length is 0)
-            _builder.Append(Interrogation);
-        else
-            _builder.Append(Ampersand);
-
         _builder
+            .Append(_builder.Length is 0 ? Interrogation : Ampersand)
             .Append(parameter)
             .Append(Equal)
             .Append(value);

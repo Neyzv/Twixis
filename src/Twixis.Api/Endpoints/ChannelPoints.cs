@@ -38,4 +38,16 @@ public sealed class ChannelPoints
 
         return _http.SendRequestAsync(HttpMethod.Delete, url, cancellationToken);
     }
+
+    public async Task<GetCustomRewardResponse[]> GetCustomRewardAsync(GetCustomRewardRequest request, CancellationToken cancellationToken)
+    {
+        var url = UrlBuilder
+            .Create("channel_points/custom_rewards")
+            .AddParameter("broadcaster_id", request.BroadcasterId)
+            .AddParameter("id", request.Id)
+            .AddParameter("only_manageable_rewards", request.OnlyManageableRewards)
+            .Build();
+
+        return (await _http.SendRequestAsync<GetCustomRewardResponse>(HttpMethod.Post, url, cancellationToken).ConfigureAwait(false)).Data;
+    }
 }
