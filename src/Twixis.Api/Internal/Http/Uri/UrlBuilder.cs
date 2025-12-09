@@ -2,6 +2,7 @@
 // Twixis licenses this file to you under the MIT license.
 // See the license here https://github.com/AerafalGit/Twixis/blob/main/LICENSE.
 
+using System.Collections;
 using System.Diagnostics;
 using System.Text;
 
@@ -38,6 +39,17 @@ public sealed class UrlBuilder
             .Append(parameter)
             .Append(Equal)
             .Append(value);
+
+        return this;
+    }
+
+    public UrlBuilder AddParameter(string parameter, IEnumerable? value)
+    {
+        if (value is null)
+            return this;
+
+        foreach (var v in value)
+            AddParameter(parameter, v);
 
         return this;
     }

@@ -21,6 +21,7 @@ namespace Twixis.Api.Internal.Json;
 [JsonSerializable(typeof(ModifyChannelInformationRequest))]
 [JsonSerializable(typeof(CreateCustomRewardsRequest))]
 [JsonSerializable(typeof(UpdateCustomRewardRequest))]
+[JsonSerializable(typeof(UpdateRedemptionStatusRequest))]
 
 [JsonSerializable(typeof(TwitchResponse<StartCommercialResponse>))]
 [JsonSerializable(typeof(TwitchResponse<GetAdScheduleResponse>))]
@@ -31,6 +32,7 @@ namespace Twixis.Api.Internal.Json;
 [JsonSerializable(typeof(TwitchResponse<GetCustomRewardResponse>))]
 [JsonSerializable(typeof(TwitchResponse<GetCustomRewardRedemptionResponse>))]
 [JsonSerializable(typeof(TwitchResponse<UpdateCustomRewardResponse>))]
+[JsonSerializable(typeof(TwitchResponse<UpdateRedemptionStatusResponse>))]
 
 [JsonSerializable(typeof(TwitchPaginatedResponse<GetExtensionAnalyticsResponse>))]
 [JsonSerializable(typeof(TwitchPaginatedResponse<GetGameAnalyticsResponse>))]

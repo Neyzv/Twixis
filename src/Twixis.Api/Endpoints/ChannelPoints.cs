@@ -53,17 +53,12 @@ public sealed class ChannelPoints
 
     public async Task<GetCustomRewardRedemptionResponse[]> GetCustomRewardRedemptionAsync(GetCustomRewardRedemptionRequest request, CancellationToken cancellationToken)
     {
-        var urlBuilder = UrlBuilder
+        var url = UrlBuilder
             .Create("channel_points/custom_rewards/redemptions")
             .AddParameter("broadcaster_id", request.BroadcasterId)
             .AddParameter("reward_id", request.RewardId)
-            .AddParameter("status", request.Status.ToString());
-
-        if(request.Ids is not null)
-            foreach(var id in request.Ids)
-                urlBuilder.AddParameter("id", id);
-
-        var url = urlBuilder
+            .AddParameter("status", request.Status.ToString())
+            .AddParameter("id", request.Ids)
             .AddParameter("sort", request.Sort.ToString())
             .AddParameter("after", request.After)
             .AddParameter("first", request.First)
@@ -81,5 +76,17 @@ public sealed class ChannelPoints
             .Build();
 
         return (await _http.SendRequestAsync<UpdateCustomRewardRequest, UpdateCustomRewardResponse>(HttpMethod.Patch, url, request, cancellationToken).ConfigureAwait(false)).Data;
+    }
+
+    public async Task<UpdateRedemptionStatusResponse[]> UpdateRedemptionStatusAsync(UpdateRedemptionStatusRequest request, CancellationToken cancellationToken)
+    {
+        var url = UrlBuilder
+            .Create("channel_points/custom_rewards")
+            .AddParameter("id", request.Ids)
+            .AddParameter("broadcaster_id", request.BroadcasterId)
+            .AddParameter("reward_id", request.RewardId)
+            .Build();
+
+        return (await _http.SendRequestAsync<UpdateRedemptionStatusRequest, UpdateRedemptionStatusResponse>(HttpMethod.Patch, url, request, cancellationToken).ConfigureAwait(false)).Data;
     }
 }
