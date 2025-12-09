@@ -61,7 +61,7 @@ public sealed class Channels
         return (await _http.GetPaginatedWithTotalAsync<GetFollowedChannelsResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
     }
 
-    public async Task<GetFollowedChannelsResponse[]> GetFollowedChannelsAsync(GetChannelFollowersRequest request, CancellationToken cancellationToken)
+    public async Task<GetChannelFollowersResponse[]> GetChannelFollowersAsync(GetChannelFollowersRequest request, CancellationToken cancellationToken)
     {
         var url = UrlBuilder
             .Create("channels/followers")
@@ -71,6 +71,6 @@ public sealed class Channels
             .AddParameter("after", request.After)
             .Build();
 
-        return (await _http.GetPaginatedWithTotalAsync<GetFollowedChannelsResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+        return (await _http.GetPaginatedWithTotalAsync<GetChannelFollowersResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
     }
 }
