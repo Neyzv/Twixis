@@ -32,7 +32,7 @@ public sealed class Analytics
             .AddParameter("after", request.After)
             .Build();
 
-        return _http.GetPaginatedAsync<GetExtensionAnalyticsResponse>(url, cancellationToken);
+        return _http.SendRequestPaginatedAsync<GetExtensionAnalyticsResponse>(HttpMethod.Get, url, cancellationToken);
     }
 
     public Task<TwitchPaginatedResponse<GetGameAnalyticsResponse>> GetGameAnalyticsAsync(GetGameAnalyticsRequest request, CancellationToken cancellationToken)
@@ -47,6 +47,6 @@ public sealed class Analytics
             .AddParameter("after", request.After)
             .Build();
 
-        return _http.GetPaginatedAsync<GetGameAnalyticsResponse>(url, cancellationToken);
+        return _http.SendRequestPaginatedAsync<GetGameAnalyticsResponse>(HttpMethod.Get, url, cancellationToken);
     }
 }
