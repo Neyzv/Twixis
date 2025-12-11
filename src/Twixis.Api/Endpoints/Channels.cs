@@ -25,7 +25,7 @@ public sealed class Channels
             .AddParameter("broadcaster_id", request.BroadcasterId)
             .Build();
 
-        return (await _http.GetAsync<GetChannelInformationResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+        return (await _http.SendRequestAsync<GetChannelInformationResponse>(HttpMethod.Get, url, cancellationToken).ConfigureAwait(false)).Data;
     }
 
     public Task ModifyChannelInformationAsync(ModifyChannelInformationRequest request, CancellationToken cancellationToken)
@@ -35,7 +35,7 @@ public sealed class Channels
             .AddParameter("broadcaster_id", request.BroadcasterId)
             .Build();
 
-        return _http.PatchAsync(url, request, cancellationToken);
+        return _http.SendRequestAsync(HttpMethod.Patch, url, request, cancellationToken);
     }
 
     public async Task<GetChannelEditorsResponse[]> GetChannelEditorsAsync(GetChannelEditorsRequest request, CancellationToken cancellationToken)
@@ -45,7 +45,7 @@ public sealed class Channels
             .AddParameter("broadcaster_id", request.BroadcasterId)
             .Build();
 
-        return (await _http.GetAsync<GetChannelEditorsResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+        return (await _http.SendRequestAsync<GetChannelEditorsResponse>(HttpMethod.Get, url, cancellationToken).ConfigureAwait(false)).Data;
     }
 
     public async Task<GetFollowedChannelsResponse[]> GetFollowedChannelsAsync(GetFollowedChannelsRequest request, CancellationToken cancellationToken)
@@ -58,7 +58,7 @@ public sealed class Channels
             .AddParameter("after", request.After)
             .Build();
 
-        return (await _http.GetPaginatedWithTotalAsync<GetFollowedChannelsResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+        return (await _http.SendRequestPaginatedWithTotalAsync<GetFollowedChannelsResponse>(HttpMethod.Get, url, cancellationToken).ConfigureAwait(false)).Data;
     }
 
     public async Task<GetChannelFollowersResponse[]> GetChannelFollowersAsync(GetChannelFollowersRequest request, CancellationToken cancellationToken)
@@ -71,6 +71,6 @@ public sealed class Channels
             .AddParameter("after", request.After)
             .Build();
 
-        return (await _http.GetPaginatedWithTotalAsync<GetChannelFollowersResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+        return (await _http.SendRequestPaginatedWithTotalAsync<GetChannelFollowersResponse>(HttpMethod.Get, url, cancellationToken).ConfigureAwait(false)).Data;
     }
 }

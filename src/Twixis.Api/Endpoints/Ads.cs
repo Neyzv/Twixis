@@ -20,7 +20,7 @@ public sealed class Ads
 
     public async Task<StartCommercialResponse[]> StartCommercialAsync(StartCommercialRequest request, CancellationToken cancellationToken)
     {
-        return (await _http.PostAsync<StartCommercialRequest, StartCommercialResponse>("channels/commercial", request, cancellationToken).ConfigureAwait(false)).Data;
+        return (await _http.SendRequestAsync<StartCommercialRequest, StartCommercialResponse>(HttpMethod.Post, "channels/commercial", request, cancellationToken).ConfigureAwait(false)).Data;
     }
 
     public async Task<GetAdScheduleResponse[]> GetAdScheduleAsync(GetAdScheduleRequest request, CancellationToken cancellationToken)
@@ -30,7 +30,7 @@ public sealed class Ads
             .AddParameter("broadcaster_id", request.BroadcasterId)
             .Build();
 
-        return (await _http.GetAsync<GetAdScheduleResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+        return (await _http.SendRequestAsync<GetAdScheduleResponse>(HttpMethod.Get, url, cancellationToken).ConfigureAwait(false)).Data;
     }
 
     public async Task<SnoozeNextAdResponse[]> SnoozeNextAdAsync(SnoozeNextAdRequest request, CancellationToken cancellationToken)
@@ -40,6 +40,6 @@ public sealed class Ads
             .AddParameter("broadcaster_id", request.BroadcasterId)
             .Build();
 
-        return (await _http.PostAsync<SnoozeNextAdResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+        return (await _http.SendRequestAsync<SnoozeNextAdResponse>(HttpMethod.Post, url, cancellationToken).ConfigureAwait(false)).Data;
     }
 }

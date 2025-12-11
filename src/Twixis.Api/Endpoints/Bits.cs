@@ -30,6 +30,6 @@ public sealed class Bits
             .AddParameter("user_id", request.UserId)
             .Build();
 
-        return _http.GetDatedAsync<GetBitsLeaderboardResponse>(url, cancellationToken);
+        return _http.SendRequestDatedAsync<GetBitsLeaderboardResponse>(HttpMethod.Get, url, cancellationToken);
     }
 }

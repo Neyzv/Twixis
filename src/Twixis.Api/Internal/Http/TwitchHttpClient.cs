@@ -22,65 +22,78 @@ public sealed class TwitchHttpClient
         _options = options.Value;
     }
 
-    public Task<TwitchPaginatedResponse<TResponse>> GetPaginatedAsync<TResponse>([StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken)
-        where TResponse : class
+    public Task SendRequestAsync(HttpMethod httpMethod, [StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken)
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, url);
-
-        return SendAsync<TwitchPaginatedResponse<TResponse>, TResponse>(request, cancellationToken);
+        return SendAsync(new HttpRequestMessage(httpMethod, url), cancellationToken);
     }
 
-    public Task<TwitchPaginatedWithTotalResponse<TResponse>> GetPaginatedWithTotalAsync<TResponse>([StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken)
-        where TResponse : class
-    {
-        var request = new HttpRequestMessage(HttpMethod.Get, url);
-
-        return SendAsync<TwitchPaginatedWithTotalResponse<TResponse>, TResponse>(request, cancellationToken);
-    }
-
-    public Task<TwitchDatedResponse<TResponse>> GetDatedAsync<TResponse>([StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken)
-        where TResponse : class
-    {
-        var request = new HttpRequestMessage(HttpMethod.Get, url);
-
-        return SendAsync<TwitchDatedResponse<TResponse>, TResponse>(request, cancellationToken);
-    }
-
-    public Task<TwitchResponse<TResponse>> GetAsync<TResponse>([StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken)
-        where TResponse : class
-    {
-        var request = new HttpRequestMessage(HttpMethod.Get, url);
-
-        return SendAsync<TwitchResponse<TResponse>, TResponse>(request, cancellationToken);
-    }
-
-    public Task<TwitchResponse<TResponse>> PostAsync<TResponse>([StringSyntax(StringSyntaxAttribute.Uri)] string url, CancellationToken cancellationToken)
-        where TResponse : class
-    {
-        var httpRequest = new HttpRequestMessage(HttpMethod.Post, url);
-
-        return SendAsync<TwitchResponse<TResponse>, TResponse>(httpRequest, cancellationToken);
-    }
-
-    public Task<TwitchResponse<TResponse>> PostAsync<TRequest, TResponse>([StringSyntax(StringSyntaxAttribute.Uri)] string url, TRequest request, CancellationToken cancellationToken)
-        where TRequest : TwitchRequest
-        where TResponse : class
-    {
-        var httpRequest = new HttpRequestMessage(HttpMethod.Post, url);
-
-        httpRequest.Content = JsonContent.Create(request, TwitchJsonSerializerContext.Default.GetTypeInfo<TRequest>());
-
-        return SendAsync<TwitchResponse<TResponse>, TResponse>(httpRequest, cancellationToken);
-    }
-
-    public Task PatchAsync<TRequest>([StringSyntax(StringSyntaxAttribute.Uri)] string url, TRequest request, CancellationToken cancellationToken)
+    public Task SendRequestAsync<TRequest>(HttpMethod httpMethod, [StringSyntax(StringSyntaxAttribute.Uri)] string url, TRequest request, CancellationToken cancellationToken)
         where TRequest : TwitchRequest
     {
-        var httpRequest = new HttpRequestMessage(HttpMethod.Patch, url);
+        var httpRequest = new HttpRequestMessage(httpMethod, url);
 
         httpRequest.Content = JsonContent.Create(request, TwitchJsonSerializerContext.Default.GetTypeInfo<TRequest>());
 
         return SendAsync(httpRequest, cancellationToken);
+    }
+
+    public Task<TwitchResponse<TResponse>> SendRequestAsync<TResponse>(
+        HttpMethod httpMethod,
+        [StringSyntax(StringSyntaxAttribute.Uri)] string url,
+        CancellationToken cancellationToken)
+        where TResponse : class
+    {
+        var request = new HttpRequestMessage(httpMethod, url);
+
+        return SendAsync<TwitchResponse<TResponse>, TResponse>(request, cancellationToken);
+    }
+
+    public Task<TwitchResponse<TResponse>> SendRequestAsync<TRequest, TResponse>(
+        HttpMethod httpMethod,
+        [StringSyntax(StringSyntaxAttribute.Uri)] string url,
+        TRequest request,
+        CancellationToken cancellationToken)
+        where TRequest : TwitchRequest
+        where TResponse : class
+    {
+        var httpRequest = new HttpRequestMessage(httpMethod, url);
+
+        httpRequest.Content = JsonContent.Create(request, TwitchJsonSerializerContext.Default.GetTypeInfo<TRequest>());
+
+        return SendAsync<TwitchResponse<TResponse>, TResponse>(httpRequest, cancellationToken);
+    }
+
+    public Task<TwitchPaginatedResponse<TResponse>> SendRequestPaginatedAsync<TResponse>(
+        HttpMethod httpMethod,
+        [StringSyntax(StringSyntaxAttribute.Uri)] string url,
+        CancellationToken cancellationToken)
+        where TResponse : class
+    {
+        var request = new HttpRequestMessage(httpMethod, url);
+
+        return SendAsync<TwitchPaginatedResponse<TResponse>, TResponse>(request, cancellationToken);
+    }
+
+    public Task<TwitchPaginatedWithTotalResponse<TResponse>> SendRequestPaginatedWithTotalAsync<TResponse>(
+        HttpMethod httpMethod,
+        [StringSyntax(StringSyntaxAttribute.Uri)] string url,
+        CancellationToken cancellationToken)
+        where TResponse : class
+    {
+        var request = new HttpRequestMessage(httpMethod, url);
+
+        return SendAsync<TwitchPaginatedWithTotalResponse<TResponse>, TResponse>(request, cancellationToken);
+    }
+
+    public Task<TwitchDatedResponse<TResponse>> SendRequestDatedAsync<TResponse>(
+        HttpMethod httpMethod,
+        [StringSyntax(StringSyntaxAttribute.Uri)] string url,
+        CancellationToken cancellationToken)
+        where TResponse : class
+    {
+        var request = new HttpRequestMessage(httpMethod, url);
+
+        return SendAsync<TwitchDatedResponse<TResponse>, TResponse>(request, cancellationToken);
     }
 
     private void SetupRequest(HttpRequestMessage request)

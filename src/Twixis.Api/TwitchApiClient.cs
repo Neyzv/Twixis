@@ -17,11 +17,14 @@ public sealed class TwitchApiClient
 
     public Channels Channels { get; }
 
+    public ChannelPoints ChannelPoints { get; }
+
     public TwitchApiClient(TwitchHttpClient http)
     {
         Ads = new Ads(http);
         Analytics = new Analytics(http);
         Bits = new Bits(http);
         Channels = new Channels(http);
+        ChannelPoints = new ChannelPoints(http);
     }
 }
