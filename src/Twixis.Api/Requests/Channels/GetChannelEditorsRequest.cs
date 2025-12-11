@@ -2,6 +2,6 @@
 // Twixis licenses this file to you under the MIT license.
 // See the license here https://github.com/AerafalGit/Twixis/blob/main/LICENSE.
 
-namespace Twixis.Api.Requests.Ads;
+namespace Twixis.Api.Requests.Channels;
 
-public sealed record GetAdScheduleRequest(string BroadcasterId);
+public sealed record GetChannelEditorsRequest(string BroadcasterId);

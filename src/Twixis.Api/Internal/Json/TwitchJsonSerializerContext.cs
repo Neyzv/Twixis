@@ -5,20 +5,27 @@
 using System.Text.Json.Serialization;
 using System.Text.Json.Serialization.Metadata;
 using Twixis.Api.Requests.Ads;
+using Twixis.Api.Requests.Channels;
 using Twixis.Api.Responses;
 using Twixis.Api.Responses.Ads;
 using Twixis.Api.Responses.Analytics;
 using Twixis.Api.Responses.Bits;
+using Twixis.Api.Responses.Channels;
 
 namespace Twixis.Api.Internal.Json;
 
 [JsonSerializable(typeof(ErrorResponse))]
 [JsonSerializable(typeof(StartCommercialRequest))]
+[JsonSerializable(typeof(ModifyChannelInformationRequest))]
 [JsonSerializable(typeof(TwitchResponse<StartCommercialResponse>))]
 [JsonSerializable(typeof(TwitchResponse<GetAdScheduleResponse>))]
 [JsonSerializable(typeof(TwitchResponse<SnoozeNextAdResponse>))]
+[JsonSerializable(typeof(TwitchResponse<GetChannelInformationResponse>))]
+[JsonSerializable(typeof(TwitchResponse<GetChannelEditorsResponse>))]
 [JsonSerializable(typeof(TwitchPaginatedResponse<GetExtensionAnalyticsResponse>))]
 [JsonSerializable(typeof(TwitchPaginatedResponse<GetGameAnalyticsResponse>))]
+[JsonSerializable(typeof(TwitchPaginatedWithTotalResponse<GetFollowedChannelsResponse>))]
+[JsonSerializable(typeof(TwitchPaginatedWithTotalResponse<GetChannelFollowersResponse>))]
 [JsonSerializable(typeof(TwitchDatedResponse<GetBitsLeaderboardResponse>))]
 public sealed partial class TwitchJsonSerializerContext : JsonSerializerContext
 {

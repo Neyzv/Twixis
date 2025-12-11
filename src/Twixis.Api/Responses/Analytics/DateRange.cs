@@ -3,7 +3,6 @@
 // See the license here https://github.com/AerafalGit/Twixis/blob/main/LICENSE.
 
 using System.Text.Json.Serialization;
-using Twixis.Api.Internal.Json.Converters;
 
 namespace Twixis.Api.Responses.Analytics;
 

@@ -6,10 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace Twixis.Api.Responses;
 
-public record TwitchPaginatedResponse<TData>(
+public sealed record TwitchPaginatedWithTotalResponse<TData>(
     TData[] Data,
-    [property: JsonPropertyName("pagination")] TwitchPagination Pagination
-) : TwitchResponse<TData>(Data)
+    TwitchPagination Pagination,
+    [property: JsonPropertyName("total")] int Total
+) : TwitchPaginatedResponse<TData>(Data, Pagination)
     where TData : class;
-
-public sealed record TwitchPagination([property: JsonPropertyName("cursor")] string Cursor);

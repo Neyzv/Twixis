@@ -1,0 +1,76 @@
+﻿// Copyright (c) Twixis 2025.
+// Twixis licenses this file to you under the MIT license.
+// See the license here https://github.com/AerafalGit/Twixis/blob/main/LICENSE.
+
+using Twixis.Api.Internal.Http;
+using Twixis.Api.Internal.Http.Uri;
+using Twixis.Api.Requests.Channels;
+using Twixis.Api.Responses.Channels;
+
+namespace Twixis.Api.Endpoints;
+
+public sealed class Channels
+{
+    private readonly TwitchHttpClient _http;
+
+    public Channels(TwitchHttpClient http)
+    {
+        _http = http;
+    }
+
+    public async Task<GetChannelInformationResponse[]> GetAdScheduleAsync(GetChannelInformationRequest request, CancellationToken cancellationToken)
+    {
+        var url = UrlBuilder
+            .Create("channels")
+            .AddParameter("broadcaster_id", request.BroadcasterId)
+            .Build();
+
+        return (await _http.GetAsync<GetChannelInformationResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+    }
+
+    public Task ModifyChannelInformationAsync(ModifyChannelInformationRequest request, CancellationToken cancellationToken)
+    {
+        var url = UrlBuilder
+            .Create("channels")
+            .AddParameter("broadcaster_id", request.BroadcasterId)
+            .Build();
+
+        return _http.PatchAsync(url, request, cancellationToken);
+    }
+
+    public async Task<GetChannelEditorsResponse[]> GetChannelEditorsAsync(GetChannelEditorsRequest request, CancellationToken cancellationToken)
+    {
+        var url = UrlBuilder
+            .Create("channels/editors")
+            .AddParameter("broadcaster_id", request.BroadcasterId)
+            .Build();
+
+        return (await _http.GetAsync<GetChannelEditorsResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+    }
+
+    public async Task<GetFollowedChannelsResponse[]> GetFollowedChannelsAsync(GetFollowedChannelsRequest request, CancellationToken cancellationToken)
+    {
+        var url = UrlBuilder
+            .Create("channels/followed")
+            .AddParameter("user_id", request.UserId)
+            .AddParameter("broadcaster_id", request.BroadcasterId)
+            .AddParameter("first", request.First)
+            .AddParameter("after", request.After)
+            .Build();
+
+        return (await _http.GetPaginatedWithTotalAsync<GetFollowedChannelsResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+    }
+
+    public async Task<GetChannelFollowersResponse[]> GetChannelFollowersAsync(GetChannelFollowersRequest request, CancellationToken cancellationToken)
+    {
+        var url = UrlBuilder
+            .Create("channels/followers")
+            .AddParameter("user_id", request.UserId)
+            .AddParameter("broadcaster_id", request.BroadcasterId)
+            .AddParameter("first", request.First)
+            .AddParameter("after", request.After)
+            .Build();
+
+        return (await _http.GetPaginatedWithTotalAsync<GetChannelFollowersResponse>(url, cancellationToken).ConfigureAwait(false)).Data;
+    }
+}
